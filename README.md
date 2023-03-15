@@ -21,13 +21,13 @@ JS + CSS Clock is a realtime clock website built with Vanilla JavaScript.
 
 ### Demo Link
 
-**[💻 Live Site URL]()**
+**[💻 Live Site URL](https://soojeong-park-ca.github.io/js-and-css-clock/)**
 
 ## About the Project
 
 ### Status
 
-🛠️ Working on deploying the website
+✅ Completed & Deployed
 
 ### Built with
 
