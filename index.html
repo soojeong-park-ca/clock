@@ -66,6 +66,33 @@
       }
     </style>
 
-    <script></script>
+    <script>
+      // variables
+      const secondHand = document.querySelector(".second-hand");
+      const minuteHand = document.querySelector(".min-hand");
+      const hourHand = document.querySelector(".hour-hand");
+
+      let secondCount = 0;
+      let minuteCount = 0;
+      let hourCount = 0;
+
+      // logic for secondHand
+      setInterval(() => {
+        secondCount++;
+        secondHand.style.transform = `rotate(${90 + 6 * secondCount}deg)`;
+      }, 1000);
+
+      // logic for minuteHand
+      setInterval(() => {
+        minuteCount++;
+        minuteHand.style.transform = `rotate(${90 + 6 * minuteCount}deg)`;
+      }, 60000);
+
+      // logic for hourHand
+      setInterval(() => {
+        hourCount++;
+        hourHand.style.transform = `rotate(${90 + 6 * hourCount}deg)`;
+      }, 360000);
+    </script>
   </body>
 </html>
