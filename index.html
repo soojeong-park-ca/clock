@@ -56,46 +56,60 @@
       .hand {
         width: 50%;
         height: 6px;
-        background: black;
+        background: white;
         position: absolute;
         top: 50%;
-        /* position hands facing at 12 */
-        transform-origin: right;
+        left: 0;
+        /* set up center axis for clock hands */
+        transform-origin: 100%;
         /* start position all pointing at 12 on clock */
         transform: rotate(90deg);
-        /* smooth transition */
+        /* smooth transitioning and real clock-like timing function */
         transition: all 0.05s;
         transition-timing-function: cubic-bezier(0.18, 2.71, 0.44, 0.99);
+      }
+
+      .hour-hand {
+        width: 20%;
+        left: 30%;
+      }
+      .min-hand {
+        width: 35%;
+        left: 15%;
       }
     </style>
 
     <script>
       // variables
+      const hands = document.querySelectorAll(".hand");
       const secondHand = document.querySelector(".second-hand");
       const minuteHand = document.querySelector(".min-hand");
       const hourHand = document.querySelector(".hour-hand");
 
-      let secondCount = 0;
-      let minuteCount = 0;
-      let hourCount = 0;
+      // function & logic
+      function setDate() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
 
-      // logic for secondHand
-      setInterval(() => {
-        secondCount++;
-        secondHand.style.transform = `rotate(${90 + 6 * secondCount}deg)`;
-      }, 1000);
+        const secondsDegrees = (seconds / 60) * 360 + 90;
+        const minutesDegrees = (minutes / 60) * 360 + 90;
+        const hoursDegrees = (hours / 12) * 360 + 90;
 
-      // logic for minuteHand
-      setInterval(() => {
-        minuteCount++;
-        minuteHand.style.transform = `rotate(${90 + 6 * minuteCount}deg)`;
-      }, 60000);
+        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+        minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+        hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
 
-      // logic for hourHand
-      setInterval(() => {
-        hourCount++;
-        hourHand.style.transform = `rotate(${90 + 6 * hourCount}deg)`;
-      }, 360000);
+        if (secondsDegrees === 90) {
+          hands.forEach(hand => (hand.style.transition = "none"));
+        } else {
+          // resets inline-style to empty (= go back to original stylesheet)
+          hands.forEach(hand => (hand.style.transition = ""));
+        }
+      }
+
+      setInterval(setDate, 1000);
     </script>
   </body>
 </html>
