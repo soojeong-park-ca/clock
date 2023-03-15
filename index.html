@@ -56,16 +56,26 @@
       .hand {
         width: 50%;
         height: 6px;
-        background: black;
+        background: white;
         position: absolute;
         top: 50%;
-        /* position hands facing at 12 */
-        transform-origin: right;
+        left: 0;
+        /* setting up center axis for clock hands */
+        transform-origin: 100%;
         /* start position all pointing at 12 on clock */
         transform: rotate(90deg);
         /* smooth transition */
         transition: all 0.05s;
         transition-timing-function: cubic-bezier(0.18, 2.71, 0.44, 0.99);
+      }
+
+      .hour-hand {
+        width: 20%;
+        left: 30%;
+      }
+      .min-hand {
+        width: 35%;
+        left: 15%;
       }
     </style>
 
