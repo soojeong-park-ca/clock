@@ -60,11 +60,11 @@
         position: absolute;
         top: 50%;
         left: 0;
-        /* setting up center axis for clock hands */
+        /* set up center axis for clock hands */
         transform-origin: 100%;
         /* start position all pointing at 12 on clock */
         transform: rotate(90deg);
-        /* smooth transition */
+        /* smooth transitioning and real clock-like timing function */
         transition: all 0.05s;
         transition-timing-function: cubic-bezier(0.18, 2.71, 0.44, 0.99);
       }
@@ -81,6 +81,7 @@
 
     <script>
       // variables
+      const hands = document.querySelectorAll(".hand");
       const secondHand = document.querySelector(".second-hand");
       const minuteHand = document.querySelector(".min-hand");
       const hourHand = document.querySelector(".hour-hand");
@@ -88,11 +89,9 @@
       // function & logic
       function setDate() {
         const now = new Date();
-        console.log(now);
         const hours = now.getHours();
         const minutes = now.getMinutes();
         const seconds = now.getSeconds();
-        console.log("hour: ", hours, "min: ", minutes, "sec: ", seconds);
 
         const secondsDegrees = (seconds / 60) * 360 + 90;
         const minutesDegrees = (minutes / 60) * 360 + 90;
@@ -101,6 +100,13 @@
         secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
         minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
         hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+        if (secondsDegrees === 90) {
+          hands.forEach(hand => (hand.style.transition = "none"));
+        } else {
+          // resets inline-style to empty (= go back to original stylesheet)
+          hands.forEach(hand => (hand.style.transition = ""));
+        }
       }
 
       setInterval(setDate, 1000);
