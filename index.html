@@ -59,10 +59,13 @@
         background: black;
         position: absolute;
         top: 50%;
+        /* position hands facing at 12 */
         transform-origin: right;
-        transform: rotate(
-          90deg
-        ); /* start position all pointing at 12 on clock */
+        /* start position all pointing at 12 on clock */
+        transform: rotate(90deg);
+        /* smooth transition */
+        transition: all 0.05s;
+        transition-timing-function: cubic-bezier(0.18, 2.71, 0.44, 0.99);
       }
     </style>
 
