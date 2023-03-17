@@ -21,7 +21,7 @@ JS + CSS Clock is a realtime clock website built with Vanilla JavaScript.
 
 ### Demo Link
 
-**[💻 Live Site URL](https://soojeong-park-ca.github.io/js-and-css-clock/)**
+**[💻 Live Site URL](https://soojeong-park-ca.github.io/clock/)**
 
 ## About the Project
 
